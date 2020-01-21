@@ -16,6 +16,8 @@ http://localhost/php_restapi_server/server/
   | :----- | :-------------- | --------------------------- |
   | GET   | /mahasiswa | - Get All Data Mahasiswa         |
   | GET   | /mahaiswa?id=   | - Get Data Mahasiswa by ID                |
+  | PUT   | /mahasiswa | - Update data Mahasiswa         |
+  | DELETE   | /mahasiswa | - Delete Data Mahasiswa         |
 
 ## 3. Code's Status
 
@@ -24,12 +26,14 @@ http://localhost/php_restapi_server/server/
   | Code Status | Description |
   | ----------- | ----------- |
   | 200         | - Success   |
+  | 201         | - Created   |
 
 - ### Error Code's
 
   | Code Status | Description                          | Response                                                     |
   | :---------: | ------------------------------------ | ------------------------------------------------------------ |
   |     404     | - Not Found                          | { "Data Not Found!" }                                     |
+  |     400     | - Bad Request                          | { "Bad Request!" }                                     |
   |     500     | - Internal server error              | { "Internal server error" }                                |
 
 ## 4. DETAIL REQUEST
@@ -51,6 +55,7 @@ http://localhost/php_restapi_server/server/
     none
 
   - **Data Body**
+
     none
 
   - **Success Response:**
@@ -111,7 +116,7 @@ http://localhost/php_restapi_server/server/
 
       `GET`
 
-    - **URL Params**
+    - **URL Query**
 
       ```json 
       id = [Integer, required]
@@ -136,3 +141,69 @@ http://localhost/php_restapi_server/server/
               "jurusan": "Teknik Mesin"
             }
         ]
+
+  - ## UPDATE Data Mahasiswa
+
+    Update data mahasiswa by ID.
+
+    - **URL**
+
+      /mahasiswa
+
+    - **Method:**
+
+      `PUT`
+
+    - **URL Params**
+
+      none
+
+    - **Data Body**
+      ```json
+      "nrp" = "required",
+      "nama" = "required",
+      "email" = "required",
+      "jurusan" = "required",
+      "id" = "required"
+
+    - **Success Response:**
+
+      - **Code:** 200 <br />
+        **Content:** 
+
+        ```json
+        {
+        "status": true,
+        "message": "Success update data mahasiswa!"
+        }
+
+  - ## DELETE Data Mahasiswa
+
+    Delete data mahasiswa by ID.
+
+    - **URL**
+
+      /mahasiswa
+
+    - **Method:**
+
+      `DELETE`
+
+    - **URL Params**
+
+      none
+
+    - **Data Body**
+      ```json
+      "id" = "required"
+
+    - **Success Response:**
+
+      - **Code:** 200 <br />
+        **Content:** 
+
+        ```json
+        {
+        "status": true,
+        "message": "Success deleted!"
+        }
