@@ -79,4 +79,27 @@ class Mahasiswa extends REST_Controller
       }
     }
   }
+
+  public function index_put()
+  {
+    $id = $this->put('id');
+    $data = [
+      'nrp' => $this->put('nrp'),
+      'nama' => $this->put('nama'),
+      'email' => $this->put('email'),
+      'jurusan' => $this->put('jurusan')
+    ];
+
+    if ($this->mahasiswa->updateMhs($data, $id) > 0) {
+      $this->response([
+        'status' => true,
+        'message' => 'Success update data mahasiswa!'
+      ], REST_Controller::HTTP_OK);
+    } else {
+      $this->response([
+        'status' => false,
+        'message' => 'Bad request!'
+      ], REST_Controller::HTTP_BAD_REQUEST);
+    }
+  }
 }
