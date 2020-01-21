@@ -10,4 +10,16 @@ class Mahasiswa_model extends CI_Model
       return $this->db->get_where('mahasiswa', array('id =' => $id))->result_array();
     }
   }
+
+  public function createMhs($data)
+  {
+    $this->db->insert('mahasiswa', $data);
+    return $this->db->affected_rows();
+  }
+
+  public function deleteMhs($id)
+  {
+    $this->db->delete('mahasiswa', ['id' => $id]);
+    return $this->db->affected_rows();
+  }
 }
